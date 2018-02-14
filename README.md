@@ -1,7 +1,67 @@
-# Quadratic Equations Solver
+# Решатель квадратных уравнений
 
-[TODO. There will be project description]
+  Проект включает в себя функцию поиска корней квадратного уравнения и тесты к ней (с использованием Unittest)
+  В репозитории также расположен файл pre-commit, который в себе содержит скрипт запуска тестов на баше
+ 
+ 
+# Как использовать
+  Функция get_roots принимает на вход коэффициенты a, b, c квадратного уравнения вида: ax2 + bx + c = 0
+  Возвращает значение корней квадратного уравнения root1, root2. Если корень один, то второе значениие None.
+  Если вещественных корней нет, то возращается None, None.
 
-# Project Goals
+# Как запустить
 
-The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
+Скрипт требует для своей работы установленного интерпретатора Python версии 3.5
+
+Запуск на Linux:
+
+```bash
+python tests.py # может понадобиться вызов python3 вместо python, зависит от настроек операционной системы
+```
+
+Запуск на Windows происходит аналогично.
+
+# Работа с репозиторием проекта
+
+Нужно скопировать файл из репозитория 
+pre-commit и положить его в 14_pre_commit_hook/.git/hooks
+
+Тогда при каждом коммите тесты будут автоматически прогоняться, и если какой то из тестов упал, коммит не будет разрешен
+
+Пример результата коммита со сломанными тестами:
+'''
+$ git commit -m "checking hook"
+.E..
+======================================================================
+ERROR: test_returns_none_for_complex_solution (__main__.QuadraticEquationTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests.py", line 22, in test_returns_none_for_complex_solution
+    root1, root2 = get_roots(1, 2, 3)
+  File "C:\projects\devman\task1\14_pre_commit_hook\quadratic_equation.py", line 6, in get_roots
+    root1 = (-b - sqrt(discriminant)) / (2 * a)
+ValueError: math domain error
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=1)
+
+'''
+
+Пример результата коммита с зелеными тестами
+
+'''
+$ git commit -m "checking hook"
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+[master 0b45f49] checking hook
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+'''
+
+# Цели проекта
+
+Код создан в учебных целях. В рамках учебного курса по веб-разработке ― [DEVMAN.org](https://devman.org)
