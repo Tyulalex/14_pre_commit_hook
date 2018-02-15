@@ -2,7 +2,6 @@
 
 python tests.py
 OUT=$?
-echo $OUT
 if [ $OUT -eq 0 ];then
    exit 0
 else
